@@ -21,6 +21,7 @@ Route::get('/', function () {
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('karyawan', App\Http\Controllers\Admin\KaryawanController::class);
+    Route::resource('jabatan', App\Http\Controllers\Admin\JabatanController::class);
 });
 
 

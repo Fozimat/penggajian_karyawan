@@ -5,18 +5,20 @@
     </a>
 </li>
 
+<li class="nav-item {{ request()->is('admin/jabatan*') ? 'active': '' }}">
+    <a class="nav-link" href="{{ route('jabatan.index') }}">
+        <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+        <span class="menu-title">Data Jabatan</span>
+    </a>
+</li>
+
 <li class="nav-item {{ request()->is('admin/karyawan*') ? 'active': '' }}">
     <a class="nav-link" href="{{ route('karyawan.index') }}">
         <i class="mdi mdi-contacts menu-icon"></i>
         <span class="menu-title">Data Karyawan</span>
     </a>
 </li>
-<li class="nav-item">
-    <a class="nav-link" href="pages/forms/basic_elements.html">
-        <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-        <span class="menu-title">Data Jabatan</span>
-    </a>
-</li>
+
 <li class="nav-item">
     <a class="nav-link" href="pages/charts/chartjs.html">
         <i class="mdi mdi-chart-bar menu-icon"></i>
