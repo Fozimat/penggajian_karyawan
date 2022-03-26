@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FormKaryawanRequest;
+use App\Models\Jabatan;
 use App\Models\Karyawan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class KaryawanController extends Controller
 {
@@ -27,7 +29,8 @@ class KaryawanController extends Controller
      */
     public function create()
     {
-        return view('admin.karyawan.create');
+        $jabatan = Jabatan::all();
+        return view('admin.karyawan.create', compact(['jabatan']));
     }
 
     /**
@@ -43,13 +46,14 @@ class KaryawanController extends Controller
         $foto->move(public_path('foto'), $nama_foto);
         $data = [
             'nama_karyawan' => $request->nama_karyawan,
+            'id_jabatan' => $request->id_jabatan,
             'jenis_kelamin' => $request->jenis_kelamin,
             'telepon' => $request->telepon,
             'alamat' => $request->alamat,
             'foto' => $nama_foto,
         ];
         Karyawan::create($data);
-        return redirect()->route('karyawan.index')->with('flash', 'Karyawan berhasil ditambahkan');
+        return redirect()->route('karyawan.index')->with('flash', 'Data Karyawan berhasil ditambahkan');
     }
 
     /**
@@ -71,7 +75,10 @@ class KaryawanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $jabatan = Jabatan::all();
+        $karyawan = Karyawan::findOrFail($id);
+
+        return view('admin.karyawan.edit', compact(['jabatan', 'karyawan']));
     }
 
     /**
@@ -81,9 +88,29 @@ class KaryawanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FormKaryawanRequest $request, Karyawan $karyawan)
     {
-        //
+        $data = [
+            'nama_karyawan' => $request->nama_karyawan,
+            'id_jabatan' => $request->id_jabatan,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'telepon' => $request->telepon,
+            'alamat' => $request->alamat,
+        ];
+        if ($request->hasFile('foto')) {
+            $path = public_path('foto/' . $karyawan->nama_karyawan);
+            if (File::exists($path)) {
+                unlink($path);
+            }
+            $new_foto = $request->file('foto');
+            $nama_foto = $request->nama_karyawan . '.' . $new_foto->getClientOriginalExtension();
+            $new_foto->move(public_path('foto'), $nama_foto);
+            $data['foto'] = $nama_foto;
+        } else {
+            $data['foto'] = $request->old_foto;
+        }
+        $karyawan->update($data);
+        return redirect()->route('karyawan.index')->with('flash', 'Data Karyawan berhasil diubah');
     }
 
     /**
@@ -92,8 +119,13 @@ class KaryawanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Karyawan $karyawan)
     {
-        //
+        $path = public_path('foto/' . $karyawan->foto);
+        if (File::exists($path)) {
+            unlink($path);
+        }
+        $karyawan->delete();
+        return redirect()->route('karyawan.index')->with('flash', 'Data Karyawan berhasil dihapus');
     }
 }

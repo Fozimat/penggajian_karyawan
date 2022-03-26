@@ -10,4 +10,10 @@ class Karyawan extends Model
     use HasFactory;
     protected $table = 'karyawan';
     protected $guarded = [];
+
+
+    public function jabatan()
+    {
+        return $this->hasOne(Jabatan::class, 'id', 'id_jabatan');
+    }
 }

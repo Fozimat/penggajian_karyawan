@@ -1,7 +1,7 @@
 @extends('template.admin')
 
 @section('title')
-Tambah Data Karyawan
+Edit Data Karyawan
 @endsection
 
 @section('content')
@@ -10,14 +10,15 @@ Tambah Data Karyawan
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Tambah Data Karyawan</h4>
-                <form class="forms-sample" action="{{ route('karyawan.store') }}" method="POST"
+                <h4 class="card-title">Edit Data Karyawan</h4>
+                <form class="forms-sample" action="{{ route('karyawan.update', $karyawan->id) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
+                    @method('put')
                     <div class="form-group">
                         <label for="nama_karyawan">Nama Karyawan</label>
                         <input type="text" class="form-control @error('nama_karyawan') is-invalid @enderror"
-                            id="nama_karyawan" name="nama_karyawan" value="{{ old('nama_karyawan') }}">
+                            id="nama_karyawan" name="nama_karyawan" value="{{ $karyawan->nama_karyawan }}">
                         @error('nama_karyawan')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -30,7 +31,8 @@ Tambah Data Karyawan
                             name="id_jabatan">
                             <option value="">--Pilih--</option>
                             @foreach ($jabatan as $j)
-                            <option value="{{ $j->id }}">{{ $j->nama_jabatan }}</option>
+                            <option value="{{ $j->id }}" {{ $j->id == $karyawan->jabatan->id ? 'selected' : ''
+                                }}>{{ $j->nama_jabatan }}</option>
                             @endforeach
                         </select>
                         @error('id_jabatan')
@@ -40,9 +42,10 @@ Tambah Data Karyawan
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="telepon">Telepon</label>
+                        <label for="telepon">Telepon
+                        </label>
                         <input type="text" class="form-control  @error('telepon') is-invalid @enderror" id="telepon"
-                            name="telepon" value="{{ old('telepon') }}">
+                            name="telepon" value="{{ $karyawan->telepon }}">
                         @error('telepon')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -54,8 +57,10 @@ Tambah Data Karyawan
                         <select class="form-control  @error('jenis_kelamin') is-invalid @enderror" id="jenis_kelamin"
                             name="jenis_kelamin">
                             <option value="">--Pilih--</option>
-                            <option value="Laki-laki">Laki-laki</option>
-                            <option value="Perempuan">Perempuan</option>
+                            <option value="Laki-laki" {{ ($karyawan->jenis_kelamin == 'Laki-laki' ? 'selected': '')
+                                }}>Laki-laki</option>
+                            <option value="Perempuan" {{ ($karyawan->jenis_kelamin == 'Perempuan' ? 'selected': '')
+                                }}>Perempuan</option>
                         </select>
                         @error('jenis_kelamin')
                         <div class="invalid-feedback">
@@ -66,6 +71,7 @@ Tambah Data Karyawan
                     <div class="form-group">
                         <label>Foto</label>
                         <input type="file" name="foto" class="file-upload-default">
+                        <input type="hidden" name="old_foto" value="{{ $karyawan->foto }}">
                         <div class="input-group col-xs-12">
                             <input type="text" class="form-control @error('foto') is-invalid @enderror file-upload-info"
                                 disabled="">
@@ -78,19 +84,21 @@ Tambah Data Karyawan
                             </div>
                             @enderror
                         </div>
-
+                        <div style="font-size: 12px;" class="text-danger mt-1">Kosongkan jika tidak ingin
+                            mengganti
+                            foto</div>
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
                         <textarea class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat"
-                            rows="4">{{ old('alamat') }}</textarea>
+                            rows="4">{{ $karyawan->alamat }}</textarea>
                         @error('alamat')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2"> Simpan </button>
+                    <button type="submit" class="btn btn-primary mr-2"> Ubah </button>
                 </form>
             </div>
         </div>

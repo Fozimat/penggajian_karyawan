@@ -23,19 +23,35 @@ class FormKaryawanRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'nama_karyawan' => 'required',
-            'jenis_kelamin' => 'required',
-            'telepon' => 'required|numeric|min:20',
-            'alamat' => 'required|min:20',
-            'foto' => 'required|mimes:jpg,jpeg,png|max:2048'
-        ];
+        if (request()->isMethod('put')) {
+            return [
+                'nama_karyawan' => 'required',
+                'id_jabatan' => 'required',
+                'jenis_kelamin' => 'required',
+                'telepon' => 'required|numeric|min:20',
+                'alamat' => 'required|min:20',
+            ];
+        } else {
+            if (request('foto')) {
+                $rules['foto'] = 'required|mimes:jpg,jpeg,png|max:2048';
+            } else {
+                return [
+                    'nama_karyawan' => 'required',
+                    'id_jabatan' => 'required',
+                    'jenis_kelamin' => 'required',
+                    'telepon' => 'required|numeric|min:20',
+                    'alamat' => 'required|min:20',
+                    'foto' => 'required|mimes:jpg,jpeg,png|max:2048'
+                ];
+            }
+        }
     }
 
     public function messages()
     {
         return [
             'nama_karyawan.required' => 'Nama karyawan tidak boleh kosong',
+            'id_jabatan.required' => 'Jabatan tidak boleh kosong',
             'jenis_kelamin.required' => 'Jenis Kelamin tidak boleh kosong',
             'telepon.required' => 'Telepon tidak boleh kosong',
             'telepon.numeric' => 'Telepon harus angka',

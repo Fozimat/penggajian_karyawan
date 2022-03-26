@@ -28,8 +28,10 @@ Data Karyawan
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
-                                <th>Jenis Kelamin</th>
+                                <th>JK</th>
+                                <th>Jabatan</th>
                                 <th>Telepon</th>
+                                <th>Alamat</th>
                                 <th>Foto</th>
                                 <th>Aksi</th>
                             </tr>
@@ -39,14 +41,22 @@ Data Karyawan
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $k->nama_karyawan }}</td>
-                                <td>{{ $k->jenis_kelamin }}</td>
+                                <td>{{ $k->jenis_kelamin == 'Laki-laki' ? 'L' : 'P' }}</td>
+                                <td>{{ $k->jabatan->nama_jabatan }}</td>
                                 <td>{{ $k->telepon }}</td>
+                                <td>{{ $k->alamat }}</td>
                                 <td>
                                     <img src="{{ asset('foto/'.$k->foto) }}" alt="">
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-primary">edit</a>
-                                    <a href="#" class="btn btn-warning">delete</a>
+                                    <a href="{{ route('karyawan.edit', $k->id) }}" class="btn btn-primary">edit</a>
+                                    <form class="d-inline" action="{{ route('karyawan.destroy', $k->id) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button onclick="return confirm('Apakah anda yakin ingin menghapus?');"
+                                            type="submit" class="btn btn-warning">delete</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
@@ -65,7 +75,14 @@ Data Karyawan
 <script src="{{ asset('assets/vendors/datatables/dataTables.bootstrap4.min.js') }}"></script>
 <script>
     $(document).ready( function () {
-        $('#myDataTable').DataTable();
+        $('#myDataTable').DataTable({
+                columnDefs: [ {
+                targets: 5,
+                render: function ( data, type, row ) {
+                    return data.substr( 0, 20 ) + '…';
+                }
+            } ]
+        });
     } );
 </script>
 @endpush
