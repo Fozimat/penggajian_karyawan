@@ -1,11 +1,11 @@
-<li class="nav-item">
+<li class="nav-item {{ request()->is('admin') ? 'active': '' }}">
     <a class="nav-link" href="{{ route('dashboard') }}">
         <i class="mdi mdi-home menu-icon"></i>
         <span class="menu-title">Dashboard</span>
     </a>
 </li>
 
-<li class="nav-item">
+<li class="nav-item {{ request()->is('admin/karyawan*') ? 'active': '' }}">
     <a class="nav-link" href="{{ route('karyawan.index') }}">
         <i class="mdi mdi-contacts menu-icon"></i>
         <span class="menu-title">Data Karyawan</span>
