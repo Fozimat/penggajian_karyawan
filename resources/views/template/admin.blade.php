@@ -13,22 +13,23 @@
     <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
+    @stack('style')
 </head>
 
 <body>
     <div class="container-scroller">
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <div class="text-center sidebar-brand-wrapper d-flex align-items-center">
-                <a class="sidebar-brand brand-logo" href="index.html"><img src="assets/images/logo.svg"
+                <a class="sidebar-brand brand-logo" href="index.html"><img src="{{ asset('assets/images/logo.svg') }}"
                         alt="logo" /></a>
                 <a class="sidebar-brand brand-logo-mini pl-4 pt-3" href="index.html"><img
-                        src="assets/images/logo-mini.svg" alt="logo" /></a>
+                        src="{{ asset('assets/images/logo-mini.svg') }}" alt="logo" /></a>
             </div>
             <ul class="nav">
                 <li class="nav-item nav-profile">
                     <a href="#" class="nav-link">
                         <div class="nav-profile-image">
-                            <img src="assets/images/faces/face1.jpg" alt="profile" />
+                            <img src="{{ asset('assets/images/faces/face1.jpg') }}" alt="profile" />
                             <span class="login-status online"></span>
                             <!--change to offline or busy as needed-->
                         </div>
@@ -71,7 +72,8 @@
 
                         <li class="nav-item nav-profile dropdown border-0">
                             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown">
-                                <img class="nav-profile-img mr-2" alt="" src="assets/images/faces/face1.jpg" />
+                                <img class="nav-profile-img mr-2" alt=""
+                                    src="{{ asset('assets/images/faces/face1.jpg') }}" />
                                 <span class="profile-name">Henry Klein</span>
                             </a>
                             <div class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
@@ -89,7 +91,7 @@
                 </div>
             </nav>
             <div class="main-panel">
-                <div class="content-wrapper pb-0">
+                <div class="content-wrapper pb-0" style="min-height: 100vh;">
                     @yield('content')
                 </div>
                 <footer class="footer">
@@ -111,22 +113,16 @@
     <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
-    <script src="{{ asset('assets/vendors/chart.js/Chart.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/flot/jquery.flot.js') }}"></script>
-    <script src="{{ asset('assets/vendors/flot/jquery.flot.resize.js') }}"></script>
-    <script src="{{ asset('assets/vendors/flot/jquery.flot.categories.js') }}"></script>
-    <script src="{{ asset('assets/vendors/flot/jquery.flot.fillbetween.js') }}"></script>
-    <script src="{{ asset('assets/vendors/flot/jquery.flot.stack.js') }}"></script>
-    <script src="{{ asset('assets/vendors/flot/jquery.flot.pie.js') }}"></script>
+
     <!-- End plugin js for this page -->
     <!-- inject:js -->
     <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
     <script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
     <script src="{{ asset('assets/js/misc.js') }}"></script>
+    @stack('script')
     <!-- endinject -->
     <!-- Custom js for this page -->
-    <script src="{{ asset('assets/js/dashboard.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/dashboard.js') }}"></script> --}}
     <!-- End custom js for this page -->
 </body>
 
