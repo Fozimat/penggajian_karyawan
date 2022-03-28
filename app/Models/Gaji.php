@@ -5,20 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Karyawan extends Model
+class Gaji extends Model
 {
     use HasFactory;
-    protected $table = 'karyawan';
+    protected $table = 'gaji';
     protected $guarded = [];
-
 
     public function jabatan()
     {
-        return $this->hasOne(Jabatan::class, 'id', 'id_jabatan');
+        return $this->belongsTo(Jabatan::class, 'id_jabatan', 'id');
     }
 
-    public function gaji()
+    public function karyawan()
     {
-        return $this->hasMany(Gaji::class, 'id_karyawan', 'id');
+        return $this->belongsTo(Karyawan::class, 'id_karyawan', 'id');
     }
 }

@@ -11,8 +11,13 @@ class Jabatan extends Model
     protected $table = 'jabatan';
     protected $guarded = [];
 
-    public function jabatan()
+    public function karyawan()
     {
-        return $this->belongsTo(Jabatan::class, 'id', 'id_jabatan');
+        return $this->belongsTo(Karyawan::class, 'id_karyawan', 'id');
+    }
+
+    public function gaji()
+    {
+        return $this->hasMany(Gaji::class, 'id_jabatan', 'id');
     }
 }

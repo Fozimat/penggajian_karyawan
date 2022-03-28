@@ -19,8 +19,8 @@
     </a>
 </li>
 
-<li class="nav-item">
-    <a class="nav-link" href="pages/charts/chartjs.html">
+<li class="nav-item {{ request()->is('admin/gaji*') ? 'active': '' }}">
+    <a class="nav-link" href="{{ route('gaji.index') }}">
         <i class="mdi mdi-chart-bar menu-icon"></i>
         <span class="menu-title">Data Gaji</span>
     </a>
@@ -32,8 +32,12 @@
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="pages/tables/basic-table.html">
+    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                  document.getElementById('logout-form').submit();">
         <i class="mdi mdi-table-large menu-icon"></i>
         <span class="menu-title">Logout</span>
     </a>
 </li>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+    @csrf
+</form>

@@ -34,10 +34,9 @@
                             <!--change to offline or busy as needed-->
                         </div>
                         <div class="nav-profile-text d-flex flex-column pr-3">
-                            <span class="font-weight-medium mb-2">Henry Klein</span>
-                            <span class="font-weight-normal">$8,753.00</span>
+                            <span class="font-weight-medium mb-2 text-capitalize">{{ auth()->user()->nama }}</span>
+                            <span class="font-weight-normal">Admin</span>
                         </div>
-                        <span class="badge badge-danger text-white ml-3 rounded">3</span>
                     </a>
                 </li>
                 @include('template.sidebar')
@@ -74,12 +73,11 @@
                             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown">
                                 <img class="nav-profile-img mr-2" alt=""
                                     src="{{ asset('assets/images/faces/face1.jpg') }}" />
-                                <span class="profile-name">Henry Klein</span>
+                                <span class="profile-name text-capitalize">{{ auth()->user()->nama }}</span>
                             </a>
                             <div class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="mdi mdi-cached mr-2 text-success"></i> Activity Log </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
                                     <i class="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
                             </div>
                         </li>
