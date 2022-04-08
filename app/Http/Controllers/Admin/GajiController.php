@@ -48,7 +48,7 @@ class GajiController extends Controller
         $data = [
             'id_karyawan' => $request->id_karyawan,
             'bonus' => $request->bonus,
-            'tanggal' => $request->tanggal,
+            'bulan_tahun' => $request->bulan_tahun,
             'total_gaji' => $request->total_gaji,
         ];
         Gaji::create($data);
@@ -90,7 +90,7 @@ class GajiController extends Controller
         $data = [
             'id_karyawan' => $request->id_karyawan,
             'bonus' => $request->bonus,
-            'tanggal' => $request->tanggal,
+            'bulan_tahun' => $request->bulan_tahun,
             'total_gaji' => $request->total_gaji,
         ];
         $gaji->update($data);

@@ -71,10 +71,10 @@ Tambah Data Gaji
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="tanggal">Tanggal</label>
-                        <input required type="date" class="form-control  @error('tanggal') is-invalid @enderror"
-                            id="tanggal" name="tanggal" value="{{ old('tanggal') }}">
-                        @error('tanggal')
+                        <label for="bulan_tahun">Bulan/Tahun</label>
+                        <input required type="month" class="form-control  @error('bulan_tahun') is-invalid @enderror"
+                            id="bulan_tahun" name="bulan_tahun" value="{{ old('bulan_tahun') }}">
+                        @error('bulan_tahun')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>

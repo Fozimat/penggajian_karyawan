@@ -29,7 +29,7 @@ Data Gaji
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>Jabatan</th>
-                                <th>Tanggal</th>
+                                <th>Bulan/Tahun</th>
                                 <th>Bonus</th>
                                 <th>Total Gaji</th>
                                 <th>Aksi</th>
@@ -41,10 +41,11 @@ Data Gaji
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $g->karyawan->nama_karyawan }}</td>
                                 <td>{{ $g->karyawan->jabatan->nama_jabatan }}</td>
-                                <td>{{ \Carbon\Carbon::parse($g->tanggal)->isoFormat('D MMMM Y') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($g->bulan_tahun)->isoFormat(' MMMM Y') }}</td>
                                 <td>@currency($g->bonus)</td>
                                 <td>@currency($g->total_gaji)</td>
                                 <td>
+                                    <a href="#" class="btn btn-danger">cetak</a>
                                     <a href="{{ route('gaji.edit', $g->id) }}" class="btn btn-primary">edit</a>
                                     <form action="{{ route('gaji.destroy', $g->id) }}" class="d-inline" method="POST">
                                         @csrf

@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/gaji/findJabatanGaji/{id}', [App\Http\Controllers\Admin\GajiController::class, 'findJabatanGaji']);
