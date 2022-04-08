@@ -22,6 +22,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('karyawan', App\Http\Controllers\Admin\KaryawanController::class);
     Route::resource('jabatan', App\Http\Controllers\Admin\JabatanController::class);
     Route::resource('gaji', App\Http\Controllers\Admin\GajiController::class);
+    Route::get('/gaji/print/{id}', [App\Http\Controllers\Admin\GajiController::class, 'print'])->name('print.id');
 });
 
 

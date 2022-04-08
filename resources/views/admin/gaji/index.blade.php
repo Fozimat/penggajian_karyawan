@@ -45,7 +45,8 @@ Data Gaji
                                 <td>@currency($g->bonus)</td>
                                 <td>@currency($g->total_gaji)</td>
                                 <td>
-                                    <a href="#" class="btn btn-danger">cetak</a>
+                                    <a target="_blank" href="{{ route('print.id', $g->id) }}"
+                                        class="btn btn-danger">cetak</a>
                                     <a href="{{ route('gaji.edit', $g->id) }}" class="btn btn-primary">edit</a>
                                     <form action="{{ route('gaji.destroy', $g->id) }}" class="d-inline" method="POST">
                                         @csrf

@@ -6,6 +6,8 @@ use App\Models\Gaji;
 use App\Models\Karyawan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Barryvdh\DomPDF\Facade as PDF;
+use Dompdf\Dompdf;
 
 class GajiController extends Controller
 {
@@ -18,6 +20,13 @@ class GajiController extends Controller
     {
         $gaji = Gaji::with(['jabatan', 'karyawan'])->get();
         return view('admin.gaji.index', compact(['gaji']));
+    }
+
+    public function print($id)
+    {
+        $hasil = Gaji::with(['jabatan', 'karyawan'])->where('id', $id)->first();
+        $pdf = PDF::loadview('admin.gaji.print', compact(['hasil']))->setPaper('a4', 'landscape');
+        return $pdf->stream();
     }
 
     public function findJabatanGaji($id)
