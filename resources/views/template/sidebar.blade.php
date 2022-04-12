@@ -25,8 +25,8 @@
         <span class="menu-title">Data Gaji</span>
     </a>
 </li>
-<li class="nav-item">
-    <a class="nav-link" href="pages/tables/basic-table.html">
+<li class="nav-item {{ request()->is('admin/laporan') ? 'active': '' }}">
+    <a class="nav-link" href="{{ route('laporan') }}">
         <i class="mdi mdi-table-large menu-icon"></i>
         <span class="menu-title">Laporan</span>
     </a>

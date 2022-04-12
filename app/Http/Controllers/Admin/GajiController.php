@@ -7,7 +7,6 @@ use App\Models\Karyawan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Barryvdh\DomPDF\Facade as PDF;
-use Dompdf\Dompdf;
 
 class GajiController extends Controller
 {
