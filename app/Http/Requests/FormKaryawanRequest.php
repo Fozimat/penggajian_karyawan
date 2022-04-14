@@ -30,20 +30,17 @@ class FormKaryawanRequest extends FormRequest
                 'jenis_kelamin' => 'required',
                 'telepon' => 'required|numeric|min:20',
                 'alamat' => 'required|min:20',
+                'foto' => 'nullable|mimes:jpg,jpeg,png|max:2048'
             ];
         } else {
-            if (request('foto')) {
-                $rules['foto'] = 'required|mimes:jpg,jpeg,png|max:2048';
-            } else {
-                return [
-                    'nama_karyawan' => 'required',
-                    'id_jabatan' => 'required',
-                    'jenis_kelamin' => 'required',
-                    'telepon' => 'required|numeric|min:20',
-                    'alamat' => 'required|min:20',
-                    'foto' => 'required|mimes:jpg,jpeg,png|max:2048'
-                ];
-            }
+            return [
+                'nama_karyawan' => 'required',
+                'id_jabatan' => 'required',
+                'jenis_kelamin' => 'required',
+                'telepon' => 'required|numeric|min:20',
+                'alamat' => 'required|min:20',
+                'foto' => 'required|mimes:jpg,jpeg,png|max:2048'
+            ];
         }
     }
 
