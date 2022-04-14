@@ -1,7 +1,7 @@
 @extends('template.admin')
 
 @section('title')
-Tambah Data Gaji
+Edit Data Gaji
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@ Tambah Data Gaji
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Tambah Data Gaji</h4>
+                <h4 class="card-title">Edit Data Gaji</h4>
                 <form class="forms-sample" action="{{ route('gaji.update', $gaji->id) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -75,7 +75,8 @@ Tambah Data Gaji
                     <div class="form-group">
                         <label for="bulan_tahun">Tanggal</label>
                         <input required type="month" class="form-control  @error('bulan_tahun') is-invalid @enderror"
-                            id="bulan_tahun" name="bulan_tahun" value="{{ $gaji->bulan_tahun }}">
+                            id="bulan_tahun" name="bulan_tahun"
+                            value="{{ \Carbon\Carbon::parse($gaji->bulan_tahun)->isoFormat('YYYY-MM') }}">
                         @error('bulan_tahun')
                         <div class="invalid-feedback">
                             {{ $message }}
