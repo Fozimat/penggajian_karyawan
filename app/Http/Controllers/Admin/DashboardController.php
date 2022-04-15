@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Gaji;
+use App\Models\Jabatan;
+use App\Models\Karyawan;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
@@ -14,6 +17,9 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('admin.dashboard.index');
+        $total_jabatan = Jabatan::count();
+        $total_karyawan = Karyawan::count();
+        $total_gaji = Gaji::count();
+        return view('admin.dashboard.index', compact(['total_jabatan', 'total_karyawan', 'total_gaji']));
     }
 }
