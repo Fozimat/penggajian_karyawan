@@ -20,4 +20,9 @@ class Jabatan extends Model
     {
         return $this->hasMany(Gaji::class, 'id_jabatan', 'id');
     }
+
+    public function gajiKaryawan()
+    {
+        return $this->hasManyThrough(Karyawan::class, Gaji::class, 'id_karyawan', 'id_jabatan');
+    }
 }
