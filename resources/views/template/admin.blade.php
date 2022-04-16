@@ -80,7 +80,7 @@
                             <div class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
-                                    <i class="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
+                                    <i class="mdi mdi-logout mr-2 text-primary"></i> Logout </a>
                             </div>
                         </li>
                     </ul>
