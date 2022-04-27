@@ -26,6 +26,13 @@ class LaporanController extends Controller
         return $pdf->stream();
     }
 
+    public function print_karyawan()
+    {
+        $karyawan = Karyawan::all();
+        $pdf = PDF::loadview('admin.laporan.print-karyawan', compact(['karyawan']))->setPaper('a4', 'portrait');
+        return $pdf->stream();
+    }
+
     public function print_per_karyawan(Request $request)
     {
         $id_karyawan = $request->id_karyawan;

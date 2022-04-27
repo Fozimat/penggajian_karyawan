@@ -9,6 +9,19 @@ Laporan
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body text-center">
+                <h4 class="card-title">Cetak Semua Laporan Karyawan</h4>
+                <a target="_blank" href="{{ route('print.karyawan') }}" class="btn btn-info btn-icon-text btn-block">
+                    Print
+                    <i class="mdi mdi-printer btn-icon-append"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body text-center">
                 <h4 class="card-title">Cetak Semua Laporan Gaji Karyawan</h4>
                 <a target="_blank" href="{{ route('print.semua') }}" class="btn btn-info btn-icon-text btn-block"> Print
                     <i class="mdi mdi-printer btn-icon-append"></i>

@@ -24,6 +24,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('gaji', App\Http\Controllers\Admin\GajiController::class);
     Route::get('/laporan', [App\Http\Controllers\Admin\LaporanController::class, 'index'])->name('laporan');
     Route::get('/laporan/printsemua', [App\Http\Controllers\Admin\LaporanController::class, 'print_semua'])->name('print.semua');
+    Route::get('/laporan/print/karyawan', [App\Http\Controllers\Admin\LaporanController::class, 'print_karyawan'])->name('print.karyawan');
     Route::get('/gaji/print/{id}', [App\Http\Controllers\Admin\GajiController::class, 'print'])->name('print.id');
     Route::post('/laporan/printperkaryawan', [App\Http\Controllers\Admin\LaporanController::class, 'print_per_karyawan'])->name('print.per.karyawan');
     Route::post('/laporan/printperjabatan', [App\Http\Controllers\Admin\LaporanController::class, 'print_per_jabatan'])->name('print.per.jabatan');
