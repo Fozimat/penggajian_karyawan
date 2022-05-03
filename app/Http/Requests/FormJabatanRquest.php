@@ -13,10 +13,7 @@ class FormJabatanRquest extends FormRequest
      */
     public function authorize()
     {
-        return [
-            'nama_jabatan' => 'required',
-            'gaji_perbulan' => 'required|numeric',
-        ];
+        return true;
     }
 
     /**
@@ -25,6 +22,14 @@ class FormJabatanRquest extends FormRequest
      * @return array
      */
     public function rules()
+    {
+        return [
+            'nama_jabatan' => 'required',
+            'gaji_perbulan' => 'required|numeric',
+        ];
+    }
+
+    public function messages()
     {
         return [
             'nama_jabatan.required' => 'Jabatan tidak boleh kosong',
