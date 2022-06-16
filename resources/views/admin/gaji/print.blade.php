@@ -19,7 +19,8 @@
 </head>
 
 <body>
-
+    <img src="{{ public_path('assets/images/logo.jpeg') }}" class="img-fluid"
+        style="position: absolute; top:25px; width: 150px;" alt="">
     <div class="text-center">
         <h4 style="font-weight: bold;font-size: 28px;">PT Global Bintang Mandiri
         </h4>
@@ -80,8 +81,19 @@
             <td style="width: 500px;">Total Gaji</td>
             <td style="width: 500px;text-align: right;">@currency($hasil->total_gaji)</td>
         </tr>
-
     </table>
+    <table style="margin-left: 200px;margin-top:-10px;text-align: center;">
+        <tr>
+            <td>Tanjungpinang, {{ \Carbon\Carbon::now()->isoFormat('DD MMMM Y') }}</td>
+        </tr>
+        <tr>
+            <td style="height: 12px;"></td>
+        </tr>
+        <tr>
+            <td>(Supervisor Keuangan)</td>
+        </tr>
+    </table>
+
 </body>
 
 </html>
