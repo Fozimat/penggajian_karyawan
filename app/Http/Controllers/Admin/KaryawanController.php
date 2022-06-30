@@ -121,6 +121,8 @@ class KaryawanController extends Controller
      */
     public function destroy(Karyawan $karyawan)
     {
+        $karyawan->gaji()->delete();
+
         $path = public_path('foto/' . $karyawan->foto);
         if (File::exists($path)) {
             unlink($path);
