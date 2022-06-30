@@ -14,6 +14,8 @@
 </head>
 
 <body>
+    <img src="{{ public_path('assets/images/logo.jpeg') }}" class="img-fluid"
+        style="position: absolute; top:0px; width: 100px;" alt="">
     <div class="text-center">
         <h4 style="font-weight: bold;font-size: 24px;">PT Global Bintang Mandiri
         </h4>
@@ -49,6 +51,24 @@
             </tr>
             @endforeach
         </tbody>
+    </table>
+    <table>
+        <tr>
+            <td style="width: 200px;text-align: center;height: 130px;;">Dibuat oleh</td>
+            <td style="width: 292px;"></td>
+            <td style="width: 200px;text-align: center;">
+                Tanjungpinang, {{ \Carbon\Carbon::now()->isoFormat('DD MMMM Y')}}
+                <br>
+                Mengetahui
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 200px;text-align: center;">(Supervisor Keuangan)</td>
+            <td style="width: 292px;"></td>
+            <td style="width: 200px;text-align: center;">
+                (Pimpinan)
+            </td>
+        </tr>
     </table>
 
 </body>
