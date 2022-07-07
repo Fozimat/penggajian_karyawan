@@ -15,6 +15,16 @@ Tambah Data Karyawan
                     enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
+                        <label for="nik">NIK</label>
+                        <input type="number" class="form-control @error('nik') is-invalid @enderror" id="nik" name="nik"
+                            value="{{ old('nik') }}">
+                        @error('nik')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="nama_karyawan">Nama Karyawan</label>
                         <input type="text" class="form-control @error('nama_karyawan') is-invalid @enderror"
                             id="nama_karyawan" name="nama_karyawan" value="{{ old('nama_karyawan') }}">
@@ -30,7 +40,9 @@ Tambah Data Karyawan
                             name="id_jabatan">
                             <option value="">--Pilih--</option>
                             @foreach ($jabatan as $j)
-                            <option value="{{ $j->id }}">{{ $j->nama_jabatan }}</option>
+                            <option value="{{ $j->id }}" {{ (collect(old('id_jabatan'))->
+                                contains($j->id)) ?
+                                'selected':'' }}>{{ $j->nama_jabatan }}</option>
                             @endforeach
                         </select>
                         @error('id_jabatan')
@@ -54,8 +66,10 @@ Tambah Data Karyawan
                         <select class="form-control  @error('jenis_kelamin') is-invalid @enderror" id="jenis_kelamin"
                             name="jenis_kelamin">
                             <option value="">--Pilih--</option>
-                            <option value="Laki-laki">Laki-laki</option>
-                            <option value="Perempuan">Perempuan</option>
+                            <option value="Laki-laki" {{ old('jenis_kelamin')=='Laki-laki' ? 'selected' : '' }}>
+                                Laki-laki</option>
+                            <option value="Perempuan" {{ old('jenis_kelamin')=='Perempuan' ? 'selected' : '' }}>
+                                Perempuan</option>
                         </select>
                         @error('jenis_kelamin')
                         <div class="invalid-feedback">

@@ -46,6 +46,7 @@ class KaryawanController extends Controller
         $foto->move(public_path('foto'), $nama_foto);
         $data = [
             'nama_karyawan' => $request->nama_karyawan,
+            'nik' => $request->nik,
             'id_jabatan' => $request->id_jabatan,
             'jenis_kelamin' => $request->jenis_kelamin,
             'telepon' => $request->telepon,
@@ -92,6 +93,7 @@ class KaryawanController extends Controller
     {
         $data = [
             'nama_karyawan' => $request->nama_karyawan,
+            'nik' => $request->nik,
             'id_jabatan' => $request->id_jabatan,
             'jenis_kelamin' => $request->jenis_kelamin,
             'telepon' => $request->telepon,
@@ -100,7 +102,7 @@ class KaryawanController extends Controller
         if ($request->hasFile('foto')) {
             $path = public_path('foto/' . $karyawan->nama_karyawan);
             if (File::exists($path)) {
-                unlink($path);
+                File::delete($path);
             }
             $new_foto = $request->file('foto');
             $nama_foto = $request->nama_karyawan . '.' . $new_foto->getClientOriginalExtension();
@@ -125,7 +127,7 @@ class KaryawanController extends Controller
 
         $path = public_path('foto/' . $karyawan->foto);
         if (File::exists($path)) {
-            unlink($path);
+            File::delete($path);
         }
         $karyawan->delete();
         return redirect()->route('karyawan.index')->with('flash', 'Data Karyawan berhasil dihapus');

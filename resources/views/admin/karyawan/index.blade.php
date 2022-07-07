@@ -27,10 +27,10 @@ Data Karyawan
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>NIK</th>
                                 <th>Nama</th>
                                 <th>JK</th>
                                 <th>Jabatan</th>
-                                <th>Telepon</th>
                                 <th>Alamat</th>
                                 <th>Foto</th>
                                 <th>Aksi</th>
@@ -40,10 +40,10 @@ Data Karyawan
                             @foreach ($karyawan as $k)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ $k->nik }}</td>
                                 <td>{{ $k->nama_karyawan }}</td>
                                 <td>{{ $k->jenis_kelamin == 'Laki-laki' ? 'L' : 'P' }}</td>
                                 <td>{{ $k->jabatan->nama_jabatan }}</td>
-                                <td>{{ $k->telepon }}</td>
                                 <td>{{ $k->alamat }}</td>
                                 <td>
                                     <img src="{{ asset('foto/'.$k->foto) }}" alt="">
@@ -79,8 +79,9 @@ Data Karyawan
                 columnDefs: [ {
                 targets: 5,
                 render: function ( data, type, row ) {
-                    return data.substr( 0, 20 ) + '…';
-                }
+                    return data.substr( 0, 10 ) + '…';
+                },
+                
             } ]
         });
     } );

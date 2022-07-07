@@ -25,7 +25,8 @@ class FormKaryawanRequest extends FormRequest
     {
         if (request()->isMethod('put')) {
             return [
-                'nama_karyawan' => 'required',
+                'nama_karyawan' => 'required|unique:karyawan,nik,' . $this->karyawan->id,
+                'nik' => 'required',
                 'id_jabatan' => 'required',
                 'jenis_kelamin' => 'required',
                 'telepon' => 'required|numeric|min:20',
@@ -35,6 +36,7 @@ class FormKaryawanRequest extends FormRequest
         } else {
             return [
                 'nama_karyawan' => 'required',
+                'nik' => 'required|unique:karyawan,nik',
                 'id_jabatan' => 'required',
                 'jenis_kelamin' => 'required',
                 'telepon' => 'required|numeric|min:20',
@@ -48,11 +50,14 @@ class FormKaryawanRequest extends FormRequest
     {
         return [
             'nama_karyawan.required' => 'Nama karyawan tidak boleh kosong',
+            'nik.required' => 'NIK tidak boleh kosong',
+            'nik.unique' => 'NIK tidak boleh sama',
             'id_jabatan.required' => 'Jabatan tidak boleh kosong',
             'jenis_kelamin.required' => 'Jenis Kelamin tidak boleh kosong',
             'telepon.required' => 'Telepon tidak boleh kosong',
             'telepon.numeric' => 'Telepon harus angka',
             'telepon.min' => 'Telepon harus lebih dari 10 digit',
+            'alamat.min' => 'Alamat harus lebih dari 20 karakter',
             'alamat.required' => 'Alamat tidak boleh kosong',
             'foto.required' => 'Foto tidak boleh kosong',
             'foto.mimes' => 'Ekstensi file harus jpg, jpeg, png',
