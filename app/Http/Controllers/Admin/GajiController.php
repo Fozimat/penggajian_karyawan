@@ -55,11 +55,14 @@ class GajiController extends Controller
     {
         $data = [
             'id_karyawan' => $request->id_karyawan,
+            'total_hadir' => $request->hadir,
+            'total_izin' => $request->izin,
+            'total_sakit' => $request->sakit,
+            'total_tanpa_keterangan' => $request->tanpa_ket,
             'bonus' => $request->bonus,
             'bulan_tahun' => $request->bulan_tahun . '-01',
             'total_gaji' => $request->total_gaji,
         ];
-        // dd($data);
         Gaji::create($data);
         return redirect()->route('gaji.index')->with('flash', 'Gaji berhasil ditambahkan');
     }
@@ -98,6 +101,10 @@ class GajiController extends Controller
     {
         $data = [
             'id_karyawan' => $request->id_karyawan,
+            'total_hadir' => $request->hadir,
+            'total_izin' => $request->izin,
+            'total_sakit' => $request->sakit,
+            'total_tanpa_keterangan' => $request->tanpa_ket,
             'bonus' => $request->bonus,
             'bulan_tahun' => $request->bulan_tahun . '-01',
             'total_gaji' => $request->total_gaji,

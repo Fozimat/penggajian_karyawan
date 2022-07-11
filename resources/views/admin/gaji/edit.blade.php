@@ -15,6 +15,17 @@ Edit Data Gaji
                     @csrf
                     @method('PUT')
                     <div class="form-group">
+                        <label for="bulan_tahun">Bulan/Tahun</label>
+                        <input required type="month" class="form-control  @error('bulan_tahun') is-invalid @enderror"
+                            id="bulan_tahun" name="bulan_tahun"
+                            value="{{ \Carbon\Carbon::parse($gaji->bulan_tahun)->isoFormat('YYYY-MM') }}">
+                        @error('bulan_tahun')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="id_karyawan">Nama Karyawan</label>
                         <select required class="form-control  @error('id_karyawan') is-invalid @enderror"
                             id="id_karyawan" name="id_karyawan">
@@ -29,6 +40,36 @@ Edit Data Gaji
                             {{ $message }}
                         </div>
                         @enderror
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="hadir">Total Hadir</label>
+                                <input required type="number" class="form-control" id="hadir" name="hadir"
+                                    value="{{ $gaji->total_gaji }}">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="izin">Total Izin</label>
+                                <input required type="number" class="form-control" id="izin" name="izin"
+                                    value="{{ $gaji->total_izin }}">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="sakit">Total Sakit</label>
+                                <input required type="number" class="form-control" id="sakit" name="sakit"
+                                    value="{{ $gaji->total_sakit }}">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="tanpa_ket">Total Tanpa Keterangan</label>
+                                <input required type="number" class="form-control" id="tanpa_ket" name="tanpa_ket"
+                                    value="{{ $gaji->total_tanpa_keterangan }}">
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="jabatan">Jabatan</label>
@@ -72,17 +113,6 @@ Edit Data Gaji
                         </div>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="bulan_tahun">Tanggal</label>
-                        <input required type="month" class="form-control  @error('bulan_tahun') is-invalid @enderror"
-                            id="bulan_tahun" name="bulan_tahun"
-                            value="{{ \Carbon\Carbon::parse($gaji->bulan_tahun)->isoFormat('YYYY-MM') }}">
-                        @error('bulan_tahun')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
                     <button type="submit" class="btn btn-primary mr-2"> Ubah </button>
                     <input type="reset" class="btn btn-danger" value="Reset">
                 </form>
@@ -108,11 +138,17 @@ Edit Data Gaji
             }
         });
     });
-    $('#bonus').on('keyup',function() {
-        let bonus = $(this).val();
-        let gaji_bulan = $('#gaji_perbulan').val();
-        let total_gaji = parseInt(bonus) + parseInt(gaji_bulan);
-        $('#total_gaji').val(total_gaji);
+    $('#bonus, #tanpa_ket').keyup(function() {
+       hitungGaji();
     });
+
+    function hitungGaji()
+    {
+        let tanpa_ket = $('#tanpa_ket').val();
+        let bonus = $('#bonus').val();
+        let gaji_bulan = $('#gaji_perbulan').val();
+        let total_gaji = (parseInt(bonus) + parseInt(gaji_bulan)) - (parseInt(tanpa_ket) * 30000);
+        $('#total_gaji').val(total_gaji);
+    }
 </script>
 @endpush
