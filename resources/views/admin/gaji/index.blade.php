@@ -27,10 +27,10 @@ Data Gaji
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>NIK</th>
                                 <th>Nama</th>
                                 <th>Jabatan</th>
                                 <th>Bulan/Tahun</th>
-                                <th>Bonus</th>
                                 <th>Total Gaji</th>
                                 <th>Aksi</th>
                             </tr>
@@ -39,10 +39,10 @@ Data Gaji
                             @foreach ($gaji as $g)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ $g->karyawan->nik }}</td>
                                 <td>{{ $g->karyawan->nama_karyawan }}</td>
                                 <td>{{ $g->karyawan->jabatan->nama_jabatan }}</td>
                                 <td>{{ \Carbon\Carbon::parse($g->bulan_tahun)->isoFormat(' MMMM Y') }}</td>
-                                <td>@currency($g->bonus)</td>
                                 <td>@currency($g->total_gaji)</td>
                                 <td>
                                     <a target="_blank" href="{{ route('print.id', $g->id) }}"

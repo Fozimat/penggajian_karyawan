@@ -35,6 +35,10 @@
                 <th>Nama</th>
                 <th>Jabatan</th>
                 <th>Bulan/Tahun</th>
+                <th>Hadir</th>
+                <th>Izin</th>
+                <th>Sakit</th>
+                <th>Tanpa Ket</th>
                 <th>Bonus</th>
                 <th>Total Gaji</th>
             </tr>
@@ -46,6 +50,10 @@
                 <td>{{ $g->karyawan->nama_karyawan }}</td>
                 <td>{{ $g->karyawan->jabatan->nama_jabatan }}</td>
                 <td>{{ \Carbon\Carbon::parse($g->bulan_tahun)->isoFormat(' MMMM Y') }}</td>
+                <td class="text-center">{{ $g->total_tanpa_keterangan ?? 0}}</td>
+                <td class="text-center">{{ $g->total_tanpa_keterangan ?? 0}}</td>
+                <td class="text-center">{{ $g->total_tanpa_keterangan ?? 0}}</td>
+                <td class="text-center">{{ $g->total_tanpa_keterangan ?? 0}}</td>
                 <td>@currency($g->bonus)</td>
                 <td>@currency($g->total_gaji)</td>
             </tr>

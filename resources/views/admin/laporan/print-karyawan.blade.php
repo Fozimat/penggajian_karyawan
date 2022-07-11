@@ -32,6 +32,7 @@
         <thead>
             <tr>
                 <th>No</th>
+                <th>NIK</th>
                 <th>Nama Karyawan</th>
                 <th>Jabatan</th>
                 <th>Jenis Kelamin</th>
@@ -43,6 +44,7 @@
             @foreach($karyawan as $g)
             <tr>
                 <td>{{ $loop->iteration }}</td>
+                <td>{{ $g->nik }}</td>
                 <td>{{ $g->nama_karyawan }}</td>
                 <td>{{ $g->jabatan->nama_jabatan }}</td>
                 <td>{{ $g->jenis_kelamin }}</td>
