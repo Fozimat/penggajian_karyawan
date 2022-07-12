@@ -9,11 +9,11 @@
         }
 
         table {
-            font-size: 18px;
+            font-size: 14px;
         }
 
         td {
-            padding: 10px;
+            padding: 5px;
         }
     </style>
 </head>
@@ -74,20 +74,39 @@
             <td style="width: 500px;">Bonus</td>
             <td style="width: 500px;text-align: right;">@currency($hasil->bonus)</td>
         </tr>
+
     </table>
     <hr>
+    <table>
+        <tr>
+            <td style="width: 500px;">Total Hadir</td>
+            <td style="width: 500px;text-align: right;">{{ $hasil->total_hadir }} Hari</td>
+        </tr>
+        <tr>
+            <td style="width: 500px;">Total Izin</td>
+            <td style="width: 500px;text-align: right;">{{ $hasil->total_izin }} Hari</td>
+        </tr>
+        <tr>
+            <td style="width: 500px;">Total Sakit</td>
+            <td style="width: 500px;text-align: right;">{{ $hasil->total_sakit }} Hari</td>
+        </tr>
+        <tr>
+            <td style="width: 500px;">Tanpa Keterangan ({{ $hasil->total_tanpa_keterangan }} Hari) </td>
+            <td style="width: 500px;text-align: right;">@currency($hasil->total_tanpa_keterangan * 30000)</td>
+        </tr>
+    </table>
     <table>
         <tr>
             <td style="width: 500px;">Total Gaji</td>
             <td style="width: 500px;text-align: right;">@currency($hasil->total_gaji)</td>
         </tr>
     </table>
-    <table style="margin-left: 200px;margin-top:-10px;text-align: center;">
+    <table style="margin-left: 200px;margin-top:20px;text-align: center;">
         <tr>
             <td>Tanjungpinang, {{ \Carbon\Carbon::now()->isoFormat('DD MMMM Y') }}</td>
         </tr>
         <tr>
-            <td style="height: 12px;"></td>
+            <td style="height: 30px;"></td>
         </tr>
         <tr>
             <td>(Supervisor Keuangan)</td>
