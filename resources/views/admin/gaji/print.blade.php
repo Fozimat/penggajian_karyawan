@@ -95,18 +95,19 @@
             <td style="width: 500px;text-align: right;">@currency($hasil->total_tanpa_keterangan * 30000)</td>
         </tr>
     </table>
+    <hr>
     <table>
         <tr>
             <td style="width: 500px;">Total Gaji</td>
             <td style="width: 500px;text-align: right;">@currency($hasil->total_gaji)</td>
         </tr>
     </table>
-    <table style="margin-left: 200px;margin-top:20px;text-align: center;">
+    <table style="margin-left: 200px;margin-top:10px;text-align: center;">
         <tr>
             <td>Tanjungpinang, {{ \Carbon\Carbon::now()->isoFormat('DD MMMM Y') }}</td>
         </tr>
         <tr>
-            <td style="height: 30px;"></td>
+            <td style="height: 25px;"></td>
         </tr>
         <tr>
             <td>(Supervisor Keuangan)</td>
